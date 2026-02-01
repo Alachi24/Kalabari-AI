@@ -1,0 +1,28 @@
+<dependencies>
+    <!-- Spring Boot -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- DJL API -->
+    <dependency>
+        <groupId>ai.djl</groupId>
+        <artifactId>api</artifactId>
+        <version>0.26.0</version>
+    </dependency>
+
+    <!-- PyTorch Engine -->
+    <dependency>
+        <groupId>ai.djl.pytorch</groupId>
+        <artifactId>pytorch-engine</artifactId>
+        <version>0.26.0</version>
+    </dependency>
+
+    <!-- HuggingFace Models -->
+    <dependency>
+        <groupId>ai.djl.huggingface</groupId>
+        <artifactId>tokenizers</artifactId>
+        <version>0.26.0</version>
+    </dependency>
+</dependencies>
