@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "source_language": "en",
+    "target_language": "es",
+    "domain": "general",
+    "contributor_notes": "Common phrases and basic vocabulary"
+  },
+  "translations": [
+    {
+      "id": 1,
+      "source_text": "Hello",
+      "target_text": "Hola",
+      "context": "Common greeting",
+      "quality_level": "verified",
+      "usage_count": 1
+    },
+    {
+      "id": 2,
+      "source_text": "Good morning",
+      "target_text": "Buenos días",
+      "context": "Morning greeting",
+      "quality_level": "verified",
+      "usage_count": 1
+    },
+    {
+      "id": 3,
+      "source_text": "How are you?",
+      "target_text": "¿Cómo estás?",
+      "context": "Casual question",
+      "quality_level": "verified",
+      "usage_count": 1
+    },
+    {
+      "id": 4,
+      "source_text": "Thank you",
+      "target_text": "Gracias",
+      "context": "Expression of gratitude",
+      "quality_level": "verified",
+      "usage_count": 1
+    },
+    {
+      "id": 5,
+      "source_text": "You're welcome",
+      "target_text": "De nada",
+      "context": "Polite response",
+      "quality_level": "verified",
+      "usage_count": 1
+    }
+  ]
+}

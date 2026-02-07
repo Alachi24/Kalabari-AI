@@ -1,0 +1,19 @@
+source_text,target_text,source_language,target_language,domain,notes
+Hello,Hola,en,es,general,Common greeting
+Good morning,Buenos días,en,es,general,Time-specific greeting
+How are you?,¿Cómo estás?,en,es,general,Casual question
+Thank you,Gracias,en,es,general,Expression of gratitude
+You're welcome,De nada,en,es,general,Polite response
+Excuse me,Disculpa,en,es,general,Attention getter
+I'm sorry,Lo siento,en,es,general,Apology
+Yes,Sí,en,es,general,Affirmative
+No,No,en,es,general,Negative
+Please,Por favor,en,es,general,Polite request marker
+water,agua,en,es,general,Common noun
+food,comida,en,es,general,Common noun
+house,casa,en,es,general,Common noun
+computer,computadora,en,es,technical,Computing term
+database,base de datos,en,es,technical,Computing term
+software,software,en,es,technical,Computing term
+API,API,en,es,technical,Computing term - acronym
+algorithm,algoritmo,en,es,technical,Computing term

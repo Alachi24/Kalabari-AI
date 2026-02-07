@@ -1,0 +1,138 @@
+LINGUAAI DATASET CONTRIBUTION GUIDE
+===================================
+
+Thank you for contributing to LinguaAI! Your translations help us build better language models.
+
+BEFORE YOU START
+================
+
+1. Ensure you have rights to share the data
+2. Confirm translations are accurate and culturally appropriate
+3. Follow our data format standards
+4. Review the quality checklist below
+
+DATA FORMAT REQUIREMENTS
+=======================
+
+CSV Format (Recommended for simple datasets):
+- Columns: source_text, target_text, source_language, target_language, domain, notes
+- Use UTF-8 encoding
+- Enclose fields with special characters in quotes
+- One translation pair per row
+
+JSON Format (Recommended for complex data):
+- Include metadata object with source/target languages
+- Use "translations" array for data
+- Include context and quality_level fields
+- Each entry should have unique ID
+
+QUALITY STANDARDS
+=================
+
+✓ Accuracy
+  - Translations must be accurate and contextually appropriate
+  - Avoid literal word-for-word translations
+  - Consider idioms and cultural context
+  - Verify spelling and grammar
+
+✓ Completeness
+  - Include source and target text
+  - Specify language codes (ISO 639-1: en, es, fr, de, etc.)
+  - Add domain/category information
+  - Include context or usage notes
+
+✓ Consistency
+  - Use consistent terminology throughout
+  - Match formatting (capitalization, punctuation)
+  - Keep tense consistency
+  - Maintain formal/informal level
+
+LANGUAGE CODES (ISO 639-1)
+===========================
+
+English: en
+Spanish: es
+French: fr
+German: de
+Italian: it
+Portuguese: pt
+Dutch: nl
+Russian: ru
+Chinese (Simplified): zh
+Japanese: ja
+Korean: ko
+Arabic: ar
+Hindi: hi
+Turkish: tr
+Polish: pl
+
+DOMAIN CATEGORIES
+=================
+
+general     - Common phrases and everyday language
+technical   - IT, software, and technical terms
+domain      - Specialized fields (medicine, law, business)
+cultural    - Cultural references and idioms
+scientific  - Academic and scientific terminology
+business    - Business and commerce terms
+medical     - Healthcare and medical terms
+
+FILE SIZE LIMITS
+================
+
+- Maximum file size: 50MB
+- Minimum translations: 10 pairs
+- Recommended: 100-5000 pairs per submission
+
+SUBMISSION CHECKLIST
+====================
+
+Before submitting, verify:
+
+□ File format is correct (CSV, JSON, or TXT)
+□ File encoding is UTF-8
+□ All required columns are present
+□ No duplicate translations
+□ Language codes are valid
+□ Spelling and grammar are correct
+□ Domain/category is specified
+□ File size is under 50MB
+□ You have rights to share this data
+□ Data quality standards are met
+
+REVIEW PROCESS
+==============
+
+1. Initial Review (1-2 days)
+   - Format validation
+   - File integrity check
+   - Basic quality assessment
+
+2. Content Review (3-5 days)
+   - Accuracy verification
+   - Cultural appropriateness check
+   - Quality scoring
+
+3. Approval (1 day)
+   - Integration into dataset
+   - Contributor recognition
+   - Feedback (if applicable)
+
+RECOGNITION
+===========
+
+All approved contributions are credited in our dataset documentation.
+Top contributors are featured on our leaderboard and in announcements.
+Your contribution helps improve LinguaAI for users worldwide.
+
+SUPPORT & QUESTIONS
+===================
+
+Email: contribute@linguaai.com
+Discord: https://discord.gg/linguaai
+GitHub Issues: https://github.com/linguaai/dataset
+
+THANK YOU FOR CONTRIBUTING!
+============================
+
+Your effort makes LinguaAI better for everyone.

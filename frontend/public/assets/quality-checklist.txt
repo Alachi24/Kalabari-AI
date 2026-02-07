@@ -1,0 +1,162 @@
+LINGUAAI DATA QUALITY CHECKLIST
+================================
+
+Use this checklist to validate your translations before submission.
+
+ACCURACY CHECKLIST
+==================
+
+Translation Accuracy:
+□ Translation conveys the exact meaning of source text
+□ No words or phrases are omitted
+□ No extra words or interpretations added
+□ Meaning is preserved in target language context
+
+Grammar & Spelling:
+□ No spelling errors in source or target text
+□ Grammar is correct in both languages
+□ Punctuation is appropriate
+□ Capitalization is consistent and correct
+
+Cultural Appropriateness:
+□ Translation is culturally appropriate for target language
+□ Idioms are translated idiomatically, not literally
+□ Cultural references are explained or adapted
+□ No offensive or inappropriate terminology
+
+COMPLETENESS CHECKLIST
+======================
+
+Required Fields:
+□ Source text is present and complete
+□ Target translation is present and complete
+□ Source language is specified (e.g., en)
+□ Target language is specified (e.g., es)
+□ Domain/category is assigned
+□ Context or notes are provided (if applicable)
+
+Data Format:
+□ File is properly formatted (CSV/JSON/TXT)
+□ Encoding is UTF-8
+□ No hidden characters or formatting issues
+□ Line breaks are correct
+□ Fields are properly delimited
+
+CONSISTENCY CHECKLIST
+====================
+
+Terminology:
+□ Same terms are translated consistently throughout
+□ Technical terms use standard terminology
+□ Specialized vocabulary is consistent
+□ Acronyms and abbreviations are handled consistently
+
+Style:
+□ Formal/informal level is consistent
+□ Tense is consistent
+□ Voice (active/passive) is consistent
+□ Punctuation style is consistent throughout
+
+SPECIAL CASES
+=============
+
+Numbers & Dates:
+□ Numbers are formatted appropriately for target language
+□ Date formats follow target language conventions
+□ Currency is properly indicated
+□ Measurements are converted if necessary
+
+Names & Proper Nouns:
+□ Proper nouns are preserved (not translated)
+□ Names are spelled correctly in source
+□ Organizations and brands maintain original names
+□ Geographic locations follow proper conventions
+
+Technical Terms:
+□ Technical terms use industry-standard translations
+□ Acronyms are preserved or explained
+□ Code terms are not translated
+□ Version numbers are preserved
+
+DUPLICATE CHECK
+===============
+
+□ No duplicate translations in dataset
+□ No duplicate source texts with different targets
+□ If variants exist, they are clearly documented
+□ Variations in spelling are handled consistently
+
+FILE VALIDATION
+===============
+
+□ File opens without errors
+□ File size is under 50MB
+□ All rows parse correctly
+□ No corrupted or unreadable content
+□ File is not password protected
+
+FINAL REVIEW
+============
+
+□ I have reviewed all translations
+□ I can confirm accuracy of at least 95% of pairs
+□ I have rights to share this data
+□ I understand the data will be open source
+□ I agree to the contribution terms
+□ I have noted any known issues or limitations
+
+RATING YOUR DATASET
+===================
+
+Self-assess your dataset quality:
+
+EXCELLENT (95-100% accuracy):
+- Professionally translated
+- Thoroughly reviewed
+- No known issues
+- Ready for production use
+
+GOOD (85-95% accuracy):
+- Well-translated
+- Generally reviewed
+- Minor issues only
+- Suitable for model training
+
+ACCEPTABLE (75-85% accuracy):
+- Reasonably translated
+- Some quality issues
+- May need light review
+- Still useful for training
+
+NEEDS REVIEW (Below 75%):
+- Not recommended for submission
+- Requires significant editing
+- Complete review needed
+- Please revise before submitting
+
+COMMON ISSUES TO AVOID
+======================
+
+❌ Incomplete translations
+❌ Incorrect language codes
+❌ Missing context or metadata
+❌ Inconsistent terminology
+❌ Untranslated words
+❌ Spelling or grammar errors
+❌ Duplicate entries
+❌ Encoding issues (non-UTF-8)
+❌ Improper formatting
+❌ Culturally inappropriate content
+
+BEFORE YOU SUBMIT
+=================
+
+1. Print this checklist
+2. Go through each section
+3. Mark completed items
+4. Fix any unchecked items
+5. Have a colleague review if possible
+6. Submit with confidence!
+
+Questions? Check the full Contribution Guide for more details.
+Still need help? Email contribute@linguaai.com

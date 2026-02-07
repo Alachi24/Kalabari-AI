@@ -29,8 +29,6 @@ export const metadata: Metadata = {
   },
 }
 
-// TODO: build the frontend with the specification and give a framework to allow us build a logic for the backend
-
 export default function RootLayout({
   children,
 }: Readonly<{

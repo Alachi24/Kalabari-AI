@@ -1,16 +1,132 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Loader } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { detectLanguage, getLanguageName, getAvailableLanguages } from '@/lib/language-detection';
 
 export function Hero() {
   const [sourceText, setSourceText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
+  const [sourceLanguage, setSourceLanguage] = useState('en');
+  const [targetLanguage, setTargetLanguage] = useState('es');
+  const [isDetecting, setIsDetecting] = useState(false);
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [languages] = useState(getAvailableLanguages());
 
-  const handleTranslate = () => {
-    // Placeholder translation logic
-    setTranslatedText('Translated text would appear here...');
+  // Auto-detect language when source text changes (using local DistilBERT)
+  useEffect(() => {
+    if (sourceText.length > 0) {
+      const detectAsync = async () => {
+        setIsDetecting(true);
+        try {
+          // Use local DistilBERT-based detection
+          const response = await fetch('/api/detect-language-local', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: sourceText }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setSourceLanguage(data.detectedLanguage);
+            console.log('[v0] Language detected:', data.detectedLanguage);
+          }
+        } catch (error) {
+          console.error('[v0] Detection error:', error);
+        } finally {
+          setIsDetecting(false);
+        }
+      };
+
+      const timer = setTimeout(detectAsync, 500); // Debounce detection
+      return () => clearTimeout(timer);
+    }
+  }, [sourceText]);
+
+  const handleTranslate = async () => {
+    if (!sourceText.trim()) {
+      alert('Please enter text to translate');
+      return;
+    }
+
+    setIsTranslating(true);
+    try {
+      // Use local inference API powered by Transformers.js
+      const response = await fetch('/api/translate-local', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: sourceText,
+          sourceLanguage,
+          targetLanguage,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Translation failed');
+      }
+
+      const data = await response.json();
+      setTranslatedText(data.translatedText);
+      console.log('[v0] Translation successful with model:', data.model);
+    } catch (error) {
+      console.error('[v0] Translation error:', error);
+      setTranslatedText('Translation failed. Please try again.');
+    } finally {
+      setIsTranslating(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (translatedText) {
+      try {
+        await navigator.clipboard.writeText(translatedText);
+        alert('Translation copied to clipboard');
+      } catch (error) {
+        console.error('[v0] Copy failed:', error);
+      }
+    }
+  };
+
+  const handleSaveTranslation = async () => {
+    if (!translatedText) {
+      alert('Please translate text first');
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const response = await fetch('/api/translations/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceText,
+          translatedText,
+          sourceLanguage,
+          targetLanguage,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        if (response.status === 401) {
+          alert('Please sign in to save translations');
+          window.location.href = '/auth/login';
+          return;
+        }
+        throw new Error(errorData.error || 'Failed to save translation');
+      }
+
+      alert('Translation saved to your history');
+    } catch (error) {
+      console.error('[v0] Save error:', error);
+      alert('Failed to save translation');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -31,9 +147,23 @@ export function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x md:divide-border">
             {/* Source Language */}
             <div className="p-6">
-              <label className="block text-sm font-medium text-muted-foreground mb-3">
-                English
-              </label>
+              <div className="flex items-center justify-between mb-3">
+                <label className="text-sm font-medium text-muted-foreground">
+                  {getLanguageName(sourceLanguage)}
+                </label>
+                {isDetecting && <Loader className="w-4 h-4 animate-spin text-primary" />}
+              </div>
+              <select
+                value={sourceLanguage}
+                onChange={(e) => setSourceLanguage(e.target.value)}
+                className="mb-3 w-full bg-background border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
               <textarea
                 value={sourceText}
                 onChange={(e) => setSourceText(e.target.value)}
@@ -47,22 +177,44 @@ export function Hero() {
 
             {/* Target Language */}
             <div className="p-6">
-              <label className="block text-sm font-medium text-muted-foreground mb-3">
-                Spanish
+              <label className="text-sm font-medium text-muted-foreground mb-3 block">
+                Translate to
               </label>
+              <select
+                value={targetLanguage}
+                onChange={(e) => setTargetLanguage(e.target.value)}
+                className="mb-3 w-full bg-background border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
               <textarea
                 value={translatedText}
                 readOnly
                 placeholder="Translation will appear here..."
                 className="w-full h-40 bg-background border border-border rounded-lg p-4 text-foreground placeholder-muted-foreground resize-none focus:outline-none"
               />
-              <div className="mt-3">
+              <div className="mt-3 flex gap-2">
                 <Button
+                  onClick={handleCopy}
+                  disabled={!translatedText}
                   size="sm"
                   variant="ghost"
-                  className="text-xs text-muted-foreground hover:text-foreground"
+                  className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Copy
+                </Button>
+                <Button
+                  onClick={handleSaveTranslation}
+                  disabled={!translatedText || isSaving}
+                  size="sm"
+                  variant="ghost"
+                  className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSaving ? 'Saving...' : 'Save'}
                 </Button>
               </div>
             </div>
@@ -76,10 +228,20 @@ export function Hero() {
             </div>
             <Button
               onClick={handleTranslate}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              disabled={isTranslating}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Translate
-              <ArrowRight className="ml-2 w-4 h-4" />
+              {isTranslating ? (
+                <>
+                  <Loader className="mr-2 w-4 h-4 animate-spin" />
+                  Translating...
+                </>
+              ) : (
+                <>
+                  Translate
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </>
+              )}
             </Button>
           </div>
         </div>
