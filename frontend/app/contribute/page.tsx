@@ -5,6 +5,7 @@ import React from "react"
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Header } from '@/components/header';
 import { Upload, Download, Users, Target, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 
 export default function ContributePage() {
@@ -42,7 +43,7 @@ export default function ContributePage() {
         setMessage(error.error || 'Upload failed. Please try again.');
       }
     } catch (error) {
-      console.error('[v0] Upload error:', error);
+      console.error('Upload error:', error);
       setUploadStatus('error');
       setMessage('Upload failed. Please try again.');
     }
@@ -58,10 +59,10 @@ export default function ContributePage() {
   };
 
   return (
-    <main className="bg-background min-h-screen">
-      {/* Header */}
-      <div className="border-b border-border bg-card/80 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-slide-up">
+    <div className="bg-background text-foreground min-h-screen">
+      <Header />
+      <main>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 animate-slide-up">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-3 text-balance">
             Contribute to LinguaAI
           </h1>
@@ -69,7 +70,6 @@ export default function ContributePage() {
             Help improve our translation models by contributing translation datasets and cultural knowledge. Together, we&apos;re building better language technology.
           </p>
         </div>
-      </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Impact Stats */}
@@ -86,7 +86,7 @@ export default function ContributePage() {
           </div>
           <div className="bg-card border border-border rounded-xl p-6 animate-slide-up stagger-3 hover-lift">
             <Upload className="w-8 h-8 text-primary mb-4" />
-            <div className="text-3xl font-bold text-foreground mb-2">100+</div>
+            <div className="text-3xl font-bold text-foreground mb-2">20+</div>
             <p className="text-sm text-muted-foreground">Language Pairs</p>
           </div>
         </div>
@@ -335,5 +335,6 @@ export default function ContributePage() {
         </div>
       </div>
     </main>
+    </div>
   );
 }

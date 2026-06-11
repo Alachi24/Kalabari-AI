@@ -35,12 +35,17 @@ public class OpenAICompatibleGemma4Client implements Gemma4Client {
 
     @Override
     public ChatCompletionResponse chatCompletion(ChatCompletionRequest request) {
-        return webClient.post()
+        var response = webClient.post()
                 .uri("/v1/chat/completions")
                 .bodyValue(request)
                 .retrieve()
                 .bodyToMono(ChatCompletionResponse.class)
                 .timeout(Duration.ofMillis(timeoutMs))
                 .block();
+
+        if (response == null || response.choices() == null || response.choices().isEmpty()) {
+            throw new IllegalStateException("Model server returned no completion choices");
+        }
+        return response;
     }
 }

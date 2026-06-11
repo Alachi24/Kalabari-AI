@@ -40,20 +40,20 @@ export async function DELETE(
       .eq('id', id)
 
     if (error) {
-      console.error('[v0] Database error:', error)
+      console.error('Database error:', error)
       return NextResponse.json(
         { error: 'Failed to delete translation' },
         { status: 500 }
       )
     }
 
-    console.log('[v0] Translation deleted:', id)
+    console.log('Translation deleted:', id)
     return NextResponse.json(
       { success: true },
       { status: 200 }
     )
   } catch (error) {
-    console.error('[v0] Unexpected error:', error)
+    console.error('Unexpected error:', error)
     return NextResponse.json(
       { error: 'An unexpected error occurred' },
       { status: 500 }

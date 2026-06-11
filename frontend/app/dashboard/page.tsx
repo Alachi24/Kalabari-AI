@@ -43,7 +43,7 @@ export default function DashboardPage() {
           fetchTranslationHistory()
         }
       } catch (error) {
-        console.error('[v0] Auth check error:', error)
+        console.error('Auth check error:', error)
         router.push('/auth/login')
       } finally {
         setIsLoading(false)
@@ -61,10 +61,10 @@ export default function DashboardPage() {
         const data = await response.json()
         setTranslations(data.translations)
       } else {
-        console.error('[v0] Failed to fetch history')
+        console.error('Failed to fetch history')
       }
     } catch (error) {
-      console.error('[v0] Fetch error:', error)
+      console.error('Fetch error:', error)
     } finally {
       setIsFetchingHistory(false)
     }
@@ -75,7 +75,7 @@ export default function DashboardPage() {
       await navigator.clipboard.writeText(text)
       alert('Copied to clipboard')
     } catch (error) {
-      console.error('[v0] Copy error:', error)
+      console.error('Copy error:', error)
     }
   }
 
@@ -90,7 +90,7 @@ export default function DashboardPage() {
           alert('Translation deleted')
         }
       } catch (error) {
-        console.error('[v0] Delete error:', error)
+        console.error('Delete error:', error)
       }
     }
   }
@@ -102,7 +102,7 @@ export default function DashboardPage() {
         router.push('/auth/login')
       }
     } catch (error) {
-      console.error('[v0] Sign out error:', error)
+      console.error('Sign out error:', error)
     }
   }
 

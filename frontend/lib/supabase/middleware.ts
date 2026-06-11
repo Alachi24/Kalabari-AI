@@ -12,7 +12,7 @@ export async function updateSession(request: NextRequest) {
 
   // If environment variables are not set, just return the response without auth checks
   if (!supabaseUrl || !supabaseKey) {
-    console.warn('[v0] Supabase environment variables not configured. Skipping auth checks.')
+    console.warn('Supabase environment variables not configured. Skipping auth checks.')
     return supabaseResponse
   }
 

@@ -1,5 +1,7 @@
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { TextGeneration } from "@/components/text-generation";
+import { LanguageDetection } from "@/components/language-detection";
 import { Features } from "@/components/features";
 import { Footer } from "@/components/footer";
 
@@ -14,6 +16,8 @@ export default function Home() {
     <div className="bg-background text-foreground min-h-screen">
       <Header />
       <Hero />
+      <TextGeneration />
+      <LanguageDetection />
       <Features />
       <Footer />
     </div>

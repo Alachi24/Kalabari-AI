@@ -31,7 +31,6 @@ public class TranslationHistoryService {
     }
 
     public long countToday(UUID userId) {
-        var startOfDay = Instant.now().toString();
         return repository.countByUserIdAndCreatedAtAfter(userId, Instant.now().minusSeconds(86400));
     }
 

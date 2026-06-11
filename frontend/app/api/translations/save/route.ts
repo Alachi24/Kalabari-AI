@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       translatedText,
       sourceLanguage,
       targetLanguage,
-      modelUsed = 'Helsinki-NLP/Opus-MT',
+      modelUsed = 'gemma-4-e4b-nigerian',
     } = body
 
     // Validate required fields
@@ -49,20 +49,20 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (error) {
-      console.error('[v0] Database error:', error)
+      console.error('Database error:', error)
       return NextResponse.json(
         { error: 'Failed to save translation' },
         { status: 500 }
       )
     }
 
-    console.log('[v0] Translation saved:', data.id)
+    console.log('Translation saved:', data.id)
     return NextResponse.json(
       { success: true, translation: data },
       { status: 201 }
     )
   } catch (error) {
-    console.error('[v0] Unexpected error:', error)
+    console.error('Unexpected error:', error)
     return NextResponse.json(
       { error: 'An unexpected error occurred' },
       { status: 500 }

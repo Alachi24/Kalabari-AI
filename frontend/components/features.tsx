@@ -11,9 +11,9 @@ export function Features() {
     },
     {
       icon: Globe,
-      title: '100+ Languages',
+      title: 'Nigerian Languages',
       description:
-        'Support for major languages and regional dialects worldwide.',
+        'Support for Nigerian languages plus English, Spanish, and French.',
     },
     {
       icon: Sparkles,

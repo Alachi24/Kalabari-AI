@@ -88,14 +88,14 @@ export async function POST(request: NextRequest) {
       .select();
 
     if (error) {
-      console.error('[v0] Database error:', error);
+      console.error('Database error:', error);
       return NextResponse.json(
         { error: 'Failed to save contribution' },
         { status: 500 }
       );
     }
 
-    console.log('[v0] Dataset contribution received:', {
+    console.log('Dataset contribution received:', {
       userId: user.id,
       fileName: file.name,
       fileSize: file.size,
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('[v0] Upload error:', error);
+    console.error('Upload error:', error);
     return NextResponse.json(
       { error: 'Failed to process upload' },
       { status: 500 }

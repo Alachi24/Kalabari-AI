@@ -19,7 +19,7 @@ export async function signUp(data: SignUpData): Promise<{ success: boolean; erro
     })
 
     if (authError) {
-      console.error('[v0] Auth signup error:', authError)
+      console.error('Auth signup error:', authError)
       return { success: false, error: { message: authError.message } }
     }
 
@@ -27,10 +27,10 @@ export async function signUp(data: SignUpData): Promise<{ success: boolean; erro
       return { success: false, error: { message: 'Failed to create user' } }
     }
 
-    console.log('[v0] User signed up successfully:', authData.user.id)
+    console.log('User signed up successfully:', authData.user.id)
     return { success: true }
   } catch (error) {
-    console.error('[v0] Unexpected signup error:', error)
+    console.error('Unexpected signup error:', error)
     return { success: false, error: { message: 'An unexpected error occurred' } }
   }
 }
@@ -45,7 +45,7 @@ export async function signIn(data: SignInData): Promise<{ success: boolean; erro
     })
 
     if (authError) {
-      console.error('[v0] Auth signin error:', authError)
+      console.error('Auth signin error:', authError)
       return { success: false, error: { message: authError.message } }
     }
 
@@ -53,10 +53,10 @@ export async function signIn(data: SignInData): Promise<{ success: boolean; erro
       return { success: false, error: { message: 'Failed to sign in' } }
     }
 
-    console.log('[v0] User signed in successfully:', authData.user.id)
+    console.log('User signed in successfully:', authData.user.id)
     return { success: true }
   } catch (error) {
-    console.error('[v0] Unexpected signin error:', error)
+    console.error('Unexpected signin error:', error)
     return { success: false, error: { message: 'An unexpected error occurred' } }
   }
 }
@@ -68,14 +68,14 @@ export async function signOut(): Promise<{ success: boolean; error?: AuthError }
     const { error } = await supabase.auth.signOut()
 
     if (error) {
-      console.error('[v0] Auth signout error:', error)
+      console.error('Auth signout error:', error)
       return { success: false, error: { message: error.message } }
     }
 
-    console.log('[v0] User signed out')
+    console.log('User signed out')
     return { success: true }
   } catch (error) {
-    console.error('[v0] Unexpected signout error:', error)
+    console.error('Unexpected signout error:', error)
     return { success: false, error: { message: 'An unexpected error occurred' } }
   }
 }
@@ -94,13 +94,13 @@ export async function signInWithOAuth(
     })
 
     if (error) {
-      console.error('[v0] OAuth signin error:', error)
+      console.error('OAuth signin error:', error)
       return { error: { message: error.message } }
     }
 
     return { url: data.url }
   } catch (error) {
-    console.error('[v0] Unexpected OAuth signin error:', error)
+    console.error('Unexpected OAuth signin error:', error)
     return { error: { message: 'An unexpected error occurred' } }
   }
 }
@@ -117,7 +117,7 @@ export async function getCurrentUser() {
 
     return user
   } catch (error) {
-    console.error('[v0] Get current user error:', error)
+    console.error('Get current user error:', error)
     return null
   }
 }

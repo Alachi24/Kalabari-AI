@@ -24,7 +24,7 @@ export default function SignUpPage() {
         setError(result.error?.message || 'Failed to sign up with ' + provider)
       }
     } catch (err) {
-      console.error('[v0] OAuth error:', err)
+      console.error('OAuth error:', err)
       setError('An unexpected error occurred')
     } finally {
       setIsOAuthLoading(null)

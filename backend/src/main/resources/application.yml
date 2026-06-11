@@ -73,6 +73,10 @@ management:
   endpoint:
     health:
       show-details: when-authorized
+  health:
+    # RabbitMQ is not part of the deployed stack; skip its health probe.
+    rabbit:
+      enabled: false
 
 springdoc:
   api-docs:

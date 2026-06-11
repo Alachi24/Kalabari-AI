@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Loader } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { detectLanguage, getLanguageName, getAvailableLanguages } from '@/lib/language-detection';
+import { getLanguageName, getAvailableLanguages } from '@/lib/language-detection';
 
 export function Hero() {
   const [sourceText, setSourceText] = useState('');
@@ -21,8 +21,8 @@ export function Hero() {
       const detectAsync = async () => {
         setIsDetecting(true);
         try {
-          // Use local DistilBERT-based detection
-          const response = await fetch('/api/detect-language-local', {
+          // Detection is served by the backend AI gateway.
+          const response = await fetch('/api/detect-language', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: sourceText }),
@@ -30,11 +30,12 @@ export function Hero() {
 
           if (response.ok) {
             const data = await response.json();
-            setSourceLanguage(data.detectedLanguage);
-            console.log('[v0] Language detected:', data.detectedLanguage);
+            if (data.detectedLanguage) {
+              setSourceLanguage(data.detectedLanguage);
+            }
           }
         } catch (error) {
-          console.error('[v0] Detection error:', error);
+          console.error('Detection error:', error);
         } finally {
           setIsDetecting(false);
         }
@@ -53,8 +54,8 @@ export function Hero() {
 
     setIsTranslating(true);
     try {
-      // Use local inference API powered by Transformers.js
-      const response = await fetch('/api/translate-local', {
+      // Translation is served by the backend AI gateway.
+      const response = await fetch('/api/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -71,9 +72,8 @@ export function Hero() {
 
       const data = await response.json();
       setTranslatedText(data.translatedText);
-      console.log('[v0] Translation successful with model:', data.model);
     } catch (error) {
-      console.error('[v0] Translation error:', error);
+      console.error('Translation error:', error);
       setTranslatedText('Translation failed. Please try again.');
     } finally {
       setIsTranslating(false);
@@ -86,7 +86,7 @@ export function Hero() {
         await navigator.clipboard.writeText(translatedText);
         alert('Translation copied to clipboard');
       } catch (error) {
-        console.error('[v0] Copy failed:', error);
+        console.error('Copy failed:', error);
       }
     }
   };
@@ -122,7 +122,7 @@ export function Hero() {
 
       alert('Translation saved to your history');
     } catch (error) {
-      console.error('[v0] Save error:', error);
+      console.error('Save error:', error);
       alert('Failed to save translation');
     } finally {
       setIsSaving(false);
@@ -138,7 +138,7 @@ export function Hero() {
             Break Language Barriers Instantly
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in stagger-1">
-            Translate text, documents, and conversations with AI-powered accuracy in 100+ languages
+            Translate between Nigerian languages and major world languages with AI-powered accuracy
           </p>
         </div>
 
@@ -253,8 +253,8 @@ export function Hero() {
             <div className="text-xs text-muted-foreground">Get translations in milliseconds</div>
           </div>
           <div className="text-center animate-slide-up stagger-4 hover-lift rounded-lg p-3">
-            <div className="text-sm font-medium text-foreground mb-1">100+ Languages</div>
-            <div className="text-xs text-muted-foreground">Support for all major languages</div>
+            <div className="text-sm font-medium text-foreground mb-1">Nigerian & Major Languages</div>
+            <div className="text-xs text-muted-foreground">Support for Nigerian languages, English, Spanish & French</div>
           </div>
           <div className="text-center animate-slide-up stagger-5 hover-lift rounded-lg p-3">
             <div className="text-sm font-medium text-foreground mb-1">High Accuracy</div>
