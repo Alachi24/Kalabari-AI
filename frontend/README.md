@@ -270,3 +270,5 @@ For issues or questions:
 - Vercel for Next.js framework
 - Hugging Face for the inference API
 - shadcn/ui for beautiful components
+
+.
